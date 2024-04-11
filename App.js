@@ -1,7 +1,14 @@
+//Importação do React//
+//useState para adicionar o estado do componente//
 import React, { useState } from 'react';
+
+//Importação de componentes do React-Native usados na interface//
 import { StyleSheet, Text, View, TouchableOpacity, TextInput  } from 'react-native';
 
+//Função de componente React//
 export default function App() {
+
+  //Declarando estado das funções//
   const [esporte, setEsporte] = useState('');
   const [time1, setTime1] = useState('');
   const [time2, setTime2] = useState('');
@@ -12,6 +19,7 @@ export default function App() {
   const [nomeJogador, setNomeJogador] = useState('');
   const [numeroJogador, setNumeroJogador] = useState('');
 
+//Função para adicionar um jogador//
   const handleAddJogador = () => {
     if(selectedTime && nomeJogador && numeroJogador) {
       setJogadores([...jogadores, {nome: nomeJogador, numero: numeroJogador, time: selectedTime}]);
@@ -20,6 +28,7 @@ export default function App() {
     }
   };
 
+  //Função para adicionar pontos no placar (+)//
   const handleIncrementScore = (time) => {
     if (time === 'time1'){
       setTime1Pontos(time1Pontos + 1);
@@ -28,9 +37,19 @@ export default function App() {
     }
   };
 
+  //Interação do usuário//
+  //Retornando um componente view como raiz da interface//
+  //Aplicação de estilo//
+  //Inputs para inserir os dados//
+  //Botões para selecionar os times e outro para adicionar jogadores//
+  //map para mapear os jogadores e criar um componente view para cada jogador//
+  //(+) quando pressionada chama a função handleIncrementScore com o time do jogador//
+  // Componente View usado para exibir a pontuação//
+
   return(
-    <View style={styles.container}>
+    <View style={styles.container}>  
       <Text style={styles.heading}>JIFENA - MARCADOR DE PONTOS</Text>
+
     <TextInput
     style={styles.input}
     placeholder="Esporte"
@@ -100,6 +119,7 @@ export default function App() {
 );
 }
 
+//Estilização// 
   const styles = StyleSheet.create({
     container: {
       flex: 1,
