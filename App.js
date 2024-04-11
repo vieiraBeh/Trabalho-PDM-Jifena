@@ -100,54 +100,56 @@ export default function App() {
 );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#fff',
-  },
-  heading: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginBottom: 20,
-  },
-  input: {
-    width: '80%',
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    marginBottom: 10,
-    paddingHorizontal: 10,
-  },
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: '#81638b',
+    },
+    heading: {
+      fontSize: 25,
+      fontWeight: 'bold',
+      marginBottom: 30,
+      textAlign: 'center',
+    },
+    input: {
+      width: '80%',
+      height: 45,
+      textAlign: 'center',
+      borderColor: 'black',
+      borderWidth: 2,
+      marginBottom: 10,
+      paddingHorizontal: 20,
+    },
   scoreContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    width: '100%',
+    width: '50%',
     marginBottom: 10,
   },
   teamButton: {
-    padding: 10,
-    borderRadius: 5,
-    borderWidth: 1,
-    borderColor: '#000',
+    padding: 20,
+    borderRadius: 10,
+    borderWidth: 3,
+    borderColor: 'black',
   },
-  selectedTeam: {
-    backgroundColor: 'lightblue',
+  selectedTime: {
+    backgroundColor: '#b695c0',
   },
   teamText: {
     fontWeight: 'bold',
   },
   addButton: {
-    backgroundColor: 'blue',
+    backgroundColor: '#b695c0',
     paddingVertical: 10,
     paddingHorizontal: 20,
-    borderRadius: 5,
-    marginBottom: 10,
+    borderRadius: 10,
+    marginBottom: 20,
   },
   buttonText: {
-    color: '#fff',
+    color: 'black',
     fontWeight: 'bold',
   },
   playersContainer: {
@@ -160,14 +162,14 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   incrementButton: {
-    backgroundColor: 'green',
-    color: '#fff',
+    backgroundColor: '#b695c0',
+    color: 'black',
     paddingHorizontal: 10,
-    paddingVertical: 5,
+    paddingVertical: 6,
     borderRadius: 5,
   },
   scoreText: {
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: 'bold',
   },
 });
