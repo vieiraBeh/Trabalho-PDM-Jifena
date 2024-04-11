@@ -20,7 +20,13 @@ export default function App() {
     }
   };
 
-  
+  const addPontos = (time) => {
+    if (time === 'time1'){
+      setTime1Pontos(time1Pontos + 1);
+    } else {
+      setTime2Pontos(time2Score + 1);
+    }
+  };
 
 
 
