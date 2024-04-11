@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, TextInput  } from 'react-native';
 
 export default function App() {
   const [esporte, setEsporte] = useState('');
   const [time1, setTime1] = useState('');
   const [time2, setTime2] = useState('');
-  const [time1Pontos, setTime1Pontos] = useState('');
-  const [Time2Pontos, setTime2Pontos] = useState('');
+  const [time1Pontos, setTime1Pontos] = useState(0);
+  const [Time2Pontos, setTime2Pontos] = useState(0);
   const [selectedTime, setSelectedTime] = useState(null);
   const [jogadores, setJogadores] = useState([]);
   const [nomeJogador, setNomeJogador] = useState('');
   const [numeroJogador, setNumeroJogador] = useState('');
 
-  const addJogador = () => {
+  const handleAddJogador = () => {
     if(selectedTime && nomeJogador && numeroJogador) {
       setJogadores([...jogadores, {nome: nomeJogador, numero: numeroJogador, time: selectedTime}]);
       setNomeJogador('');
@@ -20,7 +20,7 @@ export default function App() {
     }
   };
 
-  const addPontos = (time) => {
+  const handleIncrementScore = (time) => {
     if (time === 'time1'){
       setTime1Pontos(time1Pontos + 1);
     } else {
@@ -45,16 +45,16 @@ export default function App() {
 
   <TextInput
     style={styles.input}
-    placeholder="Nome do Time 2"
+    placeholder="Time 2"
     value={time2}
     onChangeText={setTime2}/>
 
   <View style={styles.scoreContainer}>
-    <TouchableOpacity
-      style={[styles.timeButton, selectedTime === 'time1' && styles.selectedTime]}
-      onPress={() => setSelectedTime('time1')}>
-      <Text style={styles.timeText}>{time1}</Text>
-    </TouchableOpacity>
+  <TouchableOpacity
+  style={[styles.teamButton, selectedTime === 'time1' && styles.selectedTime]}
+  onPress={() => setSelectedTime('time1')}>
+  <Text style={styles.timeText}>{time1}</Text>
+</TouchableOpacity>
 
     <TouchableOpacity
       style={[styles.teamButton, selectedTime === 'time2' && styles.selectedTime]}
@@ -76,20 +76,21 @@ export default function App() {
     onChangeText={setNumeroJogador}
     keyboardType="numeric"/>
 
-  <TouchableOpacity style={styles.addButton} onPress={addJogador}>
+  <TouchableOpacity style={styles.addButton} onPress={handleAddJogador}>
     <Text style={styles.buttonText}>Adicionar Jogador</Text>
   </TouchableOpacity>
 
   <View style={styles.jogadoresContainer}>
-    {players.map((jogadores, index) => (
-      <View key={index} style={styles.jogadoresItem}>
-        <Text>{`${jogadores.nome} - #${jogadores.numero}`}</Text>
-        <TouchableOpacity onPress={() => handleIncrementScore(jogadores.time)}>
-          <Text style={styles.incrementButton}>+</Text>
-        </TouchableOpacity>
-      </View>
-    ))};
-  </View>
+  {jogadores.map((jogador, index) => (
+    <View key={index} style={styles.jogadoresItem}>
+      <Text>{`${jogador.nome} - #${jogador.numero}`}</Text>
+      <TouchableOpacity onPress={() => handleIncrementScore(jogador.time)}>
+        <Text style={styles.incrementButton}>+</Text>
+      </TouchableOpacity>
+    </View>
+  ))}
+</View>
+
 
   <View style={styles.scoreContainer}>
     <Text style={styles.scoreText}>{time1}: {time1Pontos}</Text>
@@ -99,12 +100,74 @@ export default function App() {
 );
 }
 
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+  },
+  heading: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 20,
+  },
+  input: {
+    width: '80%',
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    marginBottom: 10,
+    paddingHorizontal: 10,
+  },
+  scoreContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    width: '100%',
+    marginBottom: 10,
+  },
+  teamButton: {
+    padding: 10,
+    borderRadius: 5,
+    borderWidth: 1,
+    borderColor: '#000',
+  },
+  selectedTeam: {
+    backgroundColor: 'lightblue',
+  },
+  teamText: {
+    fontWeight: 'bold',
+  },
+  addButton: {
+    backgroundColor: 'blue',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 5,
+    marginBottom: 10,
+  },
+  buttonText: {
+    color: '#fff',
+    fontWeight: 'bold',
+  },
+  playersContainer: {
+    width: '80%',
+  },
+  playerItem: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 5,
+  },
+  incrementButton: {
+    backgroundColor: 'green',
+    color: '#fff',
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderRadius: 5,
+  },
+  scoreText: {
+    fontSize: 18,
+    fontWeight: 'bold',
   },
 });
