@@ -8,9 +8,17 @@ export default function App() {
   const [time1Pontos, setTime1Pontos] = useState('');
   const [Time2Pontos, setTime2Pontos] = useState('');
   const [selectTime, setSelectTime] = useState(null);
-  const [Jogadores, setJogadores] = useState([]);
+  const [jogadores, setJogadores] = useState([]);
   const [nomeJogador, setNomeJogador] = useState('');
   const [numeroJogador, setNumeroJogador] = useState('');
+
+  const addJogador = () => {
+    if(selectTime && nomeJogador && numeroJogador) {
+      setJogadores([...jogadores, {nome: nomeJogador, numero: numeroJogador, time: selectTime}]);
+      setNomeJogador('');
+      setNumeroJogador('');
+    }
+  };
 
   
 
